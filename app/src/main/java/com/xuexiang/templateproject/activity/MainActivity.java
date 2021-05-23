@@ -19,6 +19,7 @@ package com.xuexiang.templateproject.activity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +38,7 @@ import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.other.AboutFragment;
+import com.xuexiang.templateproject.fragment.other.LoginFragment;
 import com.xuexiang.templateproject.fragment.other.SettingsFragment;
 import com.xuexiang.templateproject.fragment.news.NewsFragment;
 import com.xuexiang.templateproject.fragment.profile.ProfileFragment;
@@ -114,7 +116,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         BaseFragment[] fragments = new BaseFragment[]{
                 new NewsFragment(),
                 new TrendingFragment(),
-                new ProfileFragment()
+                new ProfileFragment(),
+                new LoginFragment()
         };
         FragmentAdapter<BaseFragment> adapter = new FragmentAdapter<>(getSupportFragmentManager(), fragments);
         viewPager.setOffscreenPageLimit(mTitles.length - 1);
@@ -253,6 +256,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int index = CollectionUtils.arrayIndexOf(mTitles, menuItem.getTitle());
+        Log.d("111"," index="+index);
         if (index != -1) {
             toolbar.setTitle(menuItem.getTitle());
             viewPager.setCurrentItem(index, false);
